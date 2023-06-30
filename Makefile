@@ -1,12 +1,12 @@
 
-init:
-	@make -C opensearch_provider/ init
+dashboard_init:
+	@make -C dashboard/opensearch_provider/ init
 
-apply: init
-	@make -C opensearch_provider/ apply
+dashboard_apply: dashboard_init
+	@make -C dashboard/opensearch_provider/ apply
 
-destroy: init
-	@make -C opensearch_provider/ destroy
+dashboard_destroy: dashboard_init
+	@make -C dashboard/opensearch_provider/ destroy
 
 index_init:
 	@make -C init/index_setup/ init
@@ -17,12 +17,11 @@ index_setup: index_init
 index_destroy: index_init
 	@make -C init/index_setup/ destroy
 
-dashboard_init:
+patterns_init:
 	@make -C init/dashboard_setup/ init
 
-dashboard_setup: dashboard_init
+patterns_setup: patterns_init
 	@make -C init/dashboard_setup/ apply
 
-dashboard_destroy: dashboard_init
+patterns_destroy: patterns_init
 	@make -C init/dashboard_setup/ destroy
-
