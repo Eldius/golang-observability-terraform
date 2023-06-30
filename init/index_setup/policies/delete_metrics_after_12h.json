@@ -1,0 +1,44 @@
+{
+    "policy": {
+      "policy_id": "delete_metrics_after_12h",
+      "description": "Default metrics rollup policy.",
+      "schema_version": 1,
+      "error_notification": null,
+      "default_state": "hot",
+      "ism_template": {
+        "index_patterns": [
+            "metrics-otel-v1-*"
+        ],
+        "priority": 100
+      },
+      "states": [
+        {
+          "name": "hot",
+          "actions": [
+            {
+              "rollover": {
+                "min_size": "10mb"
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "state_name": "delete",
+              "conditions": {
+                "min_index_age": "12h"
+              }
+            }
+          ]
+        },
+        {
+          "name": "delete",
+          "actions": [
+            {
+              "delete": {}
+            }
+          ],
+          "transitions": []
+        }
+      ]
+    }
+  }
