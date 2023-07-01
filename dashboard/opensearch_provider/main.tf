@@ -8,7 +8,7 @@ terraform {
 }
 
 provider "opensearch" {
-  url = "https://192.168.100.195:9200"
+  url = "http://192.168.100.195:5601"
   username = "admin"
   password = "admin"
   healthcheck = false

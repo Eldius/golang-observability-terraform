@@ -1,0 +1,75 @@
+{
+  "aggs": {
+    "2": {
+      "date_histogram": {
+        "field": "time",
+        "fixed_interval": "30s",
+        "time_zone": "America/Sao_Paulo",
+        "min_doc_count": 1
+      },
+      "aggs": {
+        "1": {
+          "percentiles": {
+            "field": "value",
+            "percents": [
+              50,
+              75,
+              95,
+              99
+            ],
+            "keyed": false
+          }
+        }
+      }
+    }
+  },
+  "size": 0,
+  "stored_fields": [
+    "*"
+  ],
+  "script_fields": {},
+  "docvalue_fields": [
+    {
+      "field": "startTime",
+      "format": "date_time"
+    },
+    {
+      "field": "time",
+      "format": "date_time"
+    }
+  ],
+  "_source": {
+    "excludes": []
+  },
+  "query": {
+    "bool": {
+      "must": [],
+      "filter": [
+        {
+          "match_all": {}
+        },
+        {
+          "match_phrase": {
+            "serviceName.keyword": "rest-service-a"
+          }
+        },
+        {
+          "match_phrase": {
+            "name.keyword": "process.runtime.go.mem.heap_alloc"
+          }
+        },
+        {
+          "range": {
+            "time": {
+              "gte": "2023-06-30T23:19:31.974Z",
+              "lte": "2023-06-30T23:34:31.974Z",
+              "format": "strict_date_optional_time"
+            }
+          }
+        }
+      ],
+      "should": [],
+      "must_not": []
+    }
+  }
+}

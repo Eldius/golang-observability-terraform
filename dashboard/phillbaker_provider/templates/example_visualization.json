@@ -1,0 +1,15 @@
+[
+  {
+    "_id": "memory-allocation-service-a",
+    "_source": {
+      "type": "visualization",
+      "visualization": {
+        "title": "[service-a] Memory allocation (terraform)",
+        "visState": ${vis_state},
+        "uiStateJSON": "{}",
+        "description": "",
+        "version": 1
+      }
+    }
+  }
+]

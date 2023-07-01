@@ -1,12 +1,22 @@
 
+#dashboard_init:
+#	@make -C dashboard/opensearch_provider/ init
+#
+#dashboard_apply: dashboard_init
+#	@make -C dashboard/opensearch_provider/ apply
+#
+#dashboard_destroy: dashboard_init
+#	@make -C dashboard/opensearch_provider/ destroy
+
 dashboard_init:
-	@make -C dashboard/opensearch_provider/ init
+	@make -C dashboard/phillbaker_provider/ init
 
 dashboard_apply: dashboard_init
-	@make -C dashboard/opensearch_provider/ apply
+	@make -C dashboard/phillbaker_provider/ apply
 
 dashboard_destroy: dashboard_init
-	@make -C dashboard/opensearch_provider/ destroy
+	@make -C dashboard/phillbaker_provider/ destroy
+
 
 index_init:
 	@make -C init/index_setup/ init
